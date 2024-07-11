@@ -1,0 +1,76 @@
+﻿@model IEnumerable<TaskLibrary.Models.TaskList>
+
+@{
+    ViewData["Title"] = "GetDetailsByUserid";
+}
+
+<h1 class="display-4 mb-4 text-center" style="font-weight:bold">Task List</h1>
+
+@{
+    var SuccessCreate = TempData["SuccessCreate"] as bool?;
+    var SuccessUpdate = TempData["SuccessUpdate"] as bool?;
+    var SuccessDelete = TempData["SuccessDelete"] as bool?;
+}
+
+@if (SuccessCreate.HasValue && SuccessCreate.Value)
+{
+    <div id="SuccessMessage" class="alert alert-success" role="alert">
+        Task Created Successfully!
+    </div>
+}
+else if (SuccessUpdate.HasValue && SuccessUpdate.Value)
+{
+    <div id="SuccessMessage" class="alert alert-success" role="alert">
+        Task Updated Successfully!
+    </div>
+}
+else if (SuccessDelete.HasValue && SuccessDelete.Value)
+{
+    <div id="SuccessMessage" class="alert alert-success" role="alert">
+        Task Deleted Successfully!
+    </div>
+}
+<script>
+    setTimeout(function () {
+        var SuccessMessage = document.getElementById('SuccessMessage');
+        if (SuccessMessage) {
+            SuccessMessage.style.display = 'none';
+        }
+    }, 3000); 
+</script>
+
+<div class="d-flex justify-content-end mb-4">
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            More Options
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="@Url.Action("GetByStatusIndex","TaskManager")">Get By Status</a></li>
+            <li><a class="dropdown-item" href="@Url.Action("GetByPriorityIndex","TaskManager")">Get By Priority</a></li>
+            <li><a class="dropdown-item" href="@Url.Action("GetByTaskDateIndex","TaskManager")">Get By Task Date</a></li>
+        </ul>
+    </div>
+    <a href="@Url.Action("Create")" class="btn btn-primary ms-2">Create New</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        No tasks are available. Click <a href="@Url.Action("Create")">here</a> to add a new task.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+else
+{
+<partial name="partialtaskmanagerview" model="Model" />
+}
+<a href="@Url.Action("Index", "Index")" class="btn btn-success btn-lg">Back to Home</a>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(".alert").alert();
+        });
+    </script>
+}

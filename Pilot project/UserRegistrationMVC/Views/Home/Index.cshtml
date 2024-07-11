@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            background-image: url('../Images/bg4.jfif');
+            margin: 0;
+            padding: 0;          
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 50px;
+            border-radius: 10px;           
+        }
+
+        .welcome-heading {
+            text-align: center;
+            margin-bottom: 50px; 
+        }
+
+            .welcome-heading h1 {
+                font-size: 3.5rem; 
+                color: #4CAF50; 
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+            }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 50px; 
+        }
+
+            .btn-container a {
+                display: inline-block;
+                margin: 10px;
+                padding: 15px 40px; 
+                background-color: #007bff; 
+                color: #fff;
+                border-radius: 30px; 
+                text-decoration: none;
+                font-weight: bold; 
+                transition: background-color 0.3s ease;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+            }
+
+                .btn-container a:hover {
+                    background-color: #0056b3; 
+                }
+    </style>
+</head>
+<body>
+
+    <div class="container">       
+        <div class="btn-container">
+            <a href="@Url.Action("Login", "UserRegistration")" class="btn btn-primary btn-lg me-3">Login to your account</a> <!-- Updated button style to Bootstrap's primary color -->
+            <a href="@Url.Action("Register", "UserRegistration")" class="btn btn-success btn-lg">Register New account</a> <!-- Updated button style to Bootstrap's success color -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

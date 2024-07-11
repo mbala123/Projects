@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillLibrary", "BillLibrary\BillLibrary.csproj", "{6A610884-E3B7-475A-9D87-1DF877DAAA33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillWebAPI", "BillWebAPI\BillWebAPI.csproj", "{35909E01-214C-4899-818D-5EA6AFAAABA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillMVC", "BillMVC\BillMVC.csproj", "{62AB5549-5E6B-4D9D-9A08-E137DAEE65A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A610884-E3B7-475A-9D87-1DF877DAAA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A610884-E3B7-475A-9D87-1DF877DAAA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A610884-E3B7-475A-9D87-1DF877DAAA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A610884-E3B7-475A-9D87-1DF877DAAA33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35909E01-214C-4899-818D-5EA6AFAAABA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35909E01-214C-4899-818D-5EA6AFAAABA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35909E01-214C-4899-818D-5EA6AFAAABA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35909E01-214C-4899-818D-5EA6AFAAABA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62AB5549-5E6B-4D9D-9A08-E137DAEE65A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62AB5549-5E6B-4D9D-9A08-E137DAEE65A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62AB5549-5E6B-4D9D-9A08-E137DAEE65A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62AB5549-5E6B-4D9D-9A08-E137DAEE65A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6439ADE9-7AA2-4628-9D5E-21E9F151B431}
+	EndGlobalSection
+EndGlobal

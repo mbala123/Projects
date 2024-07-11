@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "v7Q9IUD2PjQbxn9pfpnkAyiKVUhZsrYjo1eEEIoZhgI=",
+  "Source": "BillWebAPI",
+  "BasePath": "_content/BillWebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

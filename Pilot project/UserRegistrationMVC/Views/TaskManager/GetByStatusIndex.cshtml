@@ -1,0 +1,35 @@
+﻿@model TaskLibrary.Models.TaskList
+@using TaskListMVC.Models
+
+@{
+    ViewData["Title"] = "GetByStatusIndex";
+}
+
+
+<div class="container">
+    <h1 class="display-4 text-center" style="font-weight:bold">Get By Status Index</h1>
+    <div class="card mt-4">
+        <div class="card-body">
+            <form method="get" action="@Url.Action("GetByStatus", "TaskManager")">
+                <div class="mb-3">
+                    <label for="statusid" class="form-label">Select Status:</label>
+                    <div class="input-group">
+                        @{
+                            var statusid = await ForeignKeyHelper.GetByStatusId();
+                        }
+                        <select asp-for="StatusId" class="form-select">
+                            @foreach (SelectListItem item in statusid)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                        <span class="input-group-text bg-primary text-white"><i class="bi bi-arrow-down"></i></span>
+                    </div>
+                    <span asp-validation-for="StatusId" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <a asp-action="Index" class="btn btn-primary mt-3">Back to List</a>
+</div>

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<TaskLibrary.Models.History>
+
+<!--Partial view for history-->
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="bg-primary text-white">
+            <tr style="text-align:center">
+                <th>Task Name</th>
+                <th>Task Date</th>
+                <th>Previous Status</th>
+                <th>Present Status</th>
+                <th>Priority</th>
+                <th>Last Updated on</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="text-align:center">@Html.DisplayFor(modelItem => item.TaskList.TaskName)</td>
+                    <td style="text-align:center">@item.TaskList.TaskDate.ToString("dd-MM-yyyy")</td>
+                    <td style="text-align:center">
+                        @if (item.PreviousStatus.StatusType == "To Do")
+                        {
+                            <span class="badge bg-warning">@Html.DisplayFor(modelItem => item.PreviousStatus.StatusType)</span>
+                        }
+                        else if (item.PreviousStatus.StatusType == "Open")
+                        {
+                            <span class="badge bg-warning">@Html.DisplayFor(modelItem => item.PreviousStatus.StatusType)</span>
+                        }
+                        else if (item.PreviousStatus.StatusType == "In Progress")
+                        {
+                            <span class="badge bg-info">@Html.DisplayFor(modelItem => item.PreviousStatus.StatusType)</span>
+                        }
+                        else if (item.PreviousStatus.StatusType == "Completed")
+                        {
+                            <span class="badge bg-success">@Html.DisplayFor(modelItem => item.PreviousStatus.StatusType)</span>
+                        }
+                        else if (item.PreviousStatus.StatusType == "Deleted")
+                        {
+                            <span class="badge bg-danger">@Html.DisplayFor(modelItem => item.PreviousStatus.StatusType)</span>
+                        }
+                    </td>
+                    <td style="text-align:center">
+                        @if (item.PresentStatus.StatusType == "To Do")
+                        {
+                            <span class="badge bg-warning">@Html.DisplayFor(modelItem => item.PresentStatus.StatusType)</span>
+                        }
+                        else if (item.PresentStatus.StatusType == "Open")
+                        {
+                            <span class="badge bg-warning">@Html.DisplayFor(modelItem => item.PresentStatus.StatusType)</span>
+                        }
+                        else if (item.PresentStatus.StatusType == "In Progress")
+                        {
+                            <span class="badge bg-info">@Html.DisplayFor(modelItem => item.PresentStatus.StatusType)</span>
+                        }
+                        else if (item.PresentStatus.StatusType == "Completed")
+                        {
+                            <span class="badge bg-success">@Html.DisplayFor(modelItem => item.PresentStatus.StatusType)</span>
+                        }
+                        else if (item.PresentStatus.StatusType == "Deleted")
+                        {
+                            <span class="badge bg-danger">@Html.DisplayFor(modelItem => item.PresentStatus.StatusType)</span>
+                        }
+                    </td>
+                    <td style="text-align:center">
+                        @if (item.PresentPriority.PriorityType == "High")
+                        {
+                            <span class="badge bg-danger text-dark">@Html.DisplayFor(modelItem => item.PresentPriority.PriorityType)</span>
+                        }
+                        else if (item.PresentPriority.PriorityType == "Medium")
+                        {
+                            <span class="badge bg-warning text-dark">@Html.DisplayFor(modelItem => item.PresentPriority.PriorityType)</span>
+                        }
+                        else if (item.PresentPriority.PriorityType == "Low")
+                        {
+                            <span class="badge bg-info text-dark">@Html.DisplayFor(modelItem => item.PresentPriority.PriorityType)</span>
+                        }
+                    </td>
+                    <td style="text-align:center">@Html.DisplayFor(modelItem => item.TimeStamp)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

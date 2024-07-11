@@ -1,0 +1,22 @@
+﻿@model IEnumerable<TaskLibrary.Models.TaskList>
+
+@{
+    ViewData["Title"] = "GetByTaskDate";
+}
+
+
+<h1 class="display-4 text-center" style="font-weight:bold">Get By Task Date</h1>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        No tasks are available for given task date. 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else
+{
+    <partial name="partialtaskmanagerview" model="Model" />
+
+}
+<a asp-action="Index" class="btn btn-primary mt-3">Back to List</a>

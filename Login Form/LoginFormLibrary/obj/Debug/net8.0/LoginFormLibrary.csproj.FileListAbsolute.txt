@@ -1,0 +1,14 @@
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\bin\Debug\net8.0\LoginFormLibrary.deps.json
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\bin\Debug\net8.0\LoginFormLibrary.runtimeconfig.json
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\bin\Debug\net8.0\LoginFormLibrary.dll
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\bin\Debug\net8.0\LoginFormLibrary.pdb
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\obj\Debug\net8.0\LoginFormLibrary.csproj.AssemblyReference.cache
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\obj\Debug\net8.0\LoginFormLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\obj\Debug\net8.0\LoginFormLibrary.AssemblyInfoInputs.cache
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\obj\Debug\net8.0\LoginFormLibrary.AssemblyInfo.cs
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\obj\Debug\net8.0\LoginFormLibrary.csproj.CoreCompileInputs.cache
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\obj\Debug\net8.0\LoginFormLibrary.dll
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\obj\Debug\net8.0\refint\LoginFormLibrary.dll
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\obj\Debug\net8.0\LoginFormLibrary.pdb
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\obj\Debug\net8.0\LoginFormLibrary.genruntimeconfig.cache
+D:\Dotnet Training\Example\Login Form\LoginFormLibrary\obj\Debug\net8.0\ref\LoginFormLibrary.dll

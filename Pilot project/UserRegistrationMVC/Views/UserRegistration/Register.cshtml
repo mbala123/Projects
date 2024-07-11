@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title style="text-align:center; font-weight:bold">Register</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Custom styles */
+        body, html {
+            height: 100%;
+            background-color: transparent; /* Ensure empty background */
+            background-image: url('../Images/bg4.jfif');
+        }
+
+        .card {
+            border-radius: 25px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-outline {
+            position: relative;
+            margin-bottom: 1.5rem; /* Increased margin bottom */
+        }
+
+            .form-outline input {
+                width: 100%;
+                padding: 1rem; /* Increased padding */
+                border: 1px solid #ced4da;
+                border-radius: 10px;
+                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+
+                .form-outline input:focus {
+                    border-color: #007bff;
+                    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+                }
+
+        .form-label {
+            position: absolute;
+            top: 1.5rem; /* Adjusted position */
+            left: 2rem;
+            color: #6c757d;
+            transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out, top 0.15s ease-in-out; /* Added transition for top */
+            cursor: text;
+        }
+
+        .form-outline input:valid + .form-label,
+        .form-outline input:focus + .form-label {
+            transform: translateY(-1.5rem) scale(0.9);
+            opacity: 0.5;
+            top: 0.5rem; /* Adjusted position */
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+        .text-danger {
+            color: #dc3545;
+        }
+
+        .btn-back {
+            background-color: #6c757d;
+            color: #fff;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-back:hover {
+                background-color: #545b62;
+            }
+    </style>
+</head>
+<body>
+
+    <section class="vh-100 d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+                    <div class="card text-black">
+                        <div class="card-body p-md-5">
+                            <h1 class="text-center fw-bold mb-5">Sign up</h1>
+                           
+                            <form asp-action="Register" asp-controller="UserRegistration" class="mx-1 mx-md-4" onsubmit="return validateForm()">
+                               <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="UserName" name="UserName" class="form-control" required pattern=".{4,}" title="Username must be at least 4 characters long" oninput="checkUsernameValidity()">
+                                    <label class="form-label" for="UserName">Username</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                <input type="password" id="Password" name="Password" class="form-control" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@@#$%^&*]).{8,}$" title="Password must be at least 8 characters long and contain at least one digit, one lowercase letter, one uppercase letter, and one special character">
+                                    <label class="form-label" for="Password">Password</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control" required>
+                                    <label class="form-label" for="ConfirmPassword">Confirm Password</label>
+                                    <span id="confirmPasswordError" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="DisplayName" name="DisplayName" class="form-control" required>
+                                    <label class="form-label" for="DisplayName">Display Name</label>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+    <script>
+        document.getElementById("UserName").addEventListener("input", function () {
+            var username = this.value;
+            if (!/^[A-Za-z0-9]+$/.test(username)) {
+                this.setCustomValidity("Username must be alphanumeric without spaces");
+            } else {
+                this.setCustomValidity("");
+            }
+        });
+    </script>
+    <script>
+        function validateForm() {
+            var password = document.getElementById("Password").value;
+            var confirmPassword = document.getElementById("ConfirmPassword").value;
+            var confirmPasswordError = document.getElementById("confirmPasswordError");
+
+
+            if (password !== confirmPassword) {
+                confirmPasswordError.textContent = "Passwords does not match";
+                return false;
+            } else {
+                confirmPasswordError.textContent = "";
+                return true;
+            }      
+        }
+    </script>
+   
+
+
+    <div class="text-center mt-3">
+        <a asp-action="Login" class="btn btn-back">Back to Login</a>
+    </div>
+
+</body>
+</html>

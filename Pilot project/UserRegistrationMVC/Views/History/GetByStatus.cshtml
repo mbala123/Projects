@@ -1,0 +1,22 @@
+﻿@model IEnumerable<TaskLibrary.Models.History>
+
+@{
+    ViewData["Title"] = "GetByStatus";
+}
+
+<h1 style="text-align:center; font-weight:bold">Get By Status</h1>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        No History available for given status
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else
+{
+    <partial name="partialhistoryview" model="Model" />
+}
+
+<a asp-action="Index" class="btn btn-primary mt-3">Back to List</a>
+

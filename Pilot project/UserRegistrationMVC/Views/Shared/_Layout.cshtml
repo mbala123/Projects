@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+@{
+    var displayname = ViewBag.displayname;
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Task Registration</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />  
+</head>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3" style="background-color:#ddadaf;">
+        <div class="container-fluid" style="font-size:30px;">
+            <a class="navbar-brand" >TASK REGISTRATION</a>
+            <style>
+                .nav-link:hover {
+                    background-color: white; 
+                    transition: all 0.3s ease;
+                }
+            </style>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="margin-left:300px;font-size:20px">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                    </li>                   
+                </ul>
+            @{
+                var isLogin = Context.Session.GetString("IsLogin");
+            }
+            @if (isLogin == "true")
+            {
+                <a class="nav-link text-dark" asp-area="" asp-controller="Index" asp-action="Index">Home</a>
+             
+                <a class="nav-link text-dark" asp-area="" asp-controller="UserRegistration" asp-action="Logout" >Logout</a>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-end" style="margin-top: 10px; margin-bottom: 16px; font-weight:bold">
+                            <span class="fs-6" style="font-weight:bold">Welcome,  <span class="text-primary" style="font-weight:bold">@displayname</span>!</span>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-end" style="margin-top: 10px; margin-bottom: 16px;">
+                                <!--   <span class="fs-6">Welcome <span class="text-primary"> </span>!</span> -->
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+
+</html>

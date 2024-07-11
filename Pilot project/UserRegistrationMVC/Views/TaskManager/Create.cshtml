@@ -1,0 +1,102 @@
+﻿@using TaskListMVC.Models
+@model TaskLibrary.Models.TaskList
+
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+<div class="container">
+    <h1 class="display-4 mb-4 text-center" style="font-weight:bold"> New Task</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form id="createTaskForm" asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label for="taskName" class="form-label">Task Name</label>
+                    <input asp-for="TaskName" class="form-control" id="taskName" required />
+                    <span asp-validation-for="TaskName" class="text-danger"></span>
+                </div>
+                <script>
+                    document.getElementById("taskName").addEventListener("input", function () {
+                        var username = this.value;
+                        if (!/^[A-Za-z0-9 ]+$/.test(username)) {
+                            this.setCustomValidity("Task name must be alphanumeric");
+                        } else {
+                            this.setCustomValidity("");
+                        }
+                    });
+                </script>
+                <div class="mb-3">
+                    <label for="taskDescription" class="form-label">Task Description</label>
+                    <input asp-for="TaskDescription" class="form-control" id="taskDescription" />
+                    <span asp-validation-for="TaskDescription" class="text-danger"></span>
+                </div>
+                <script>
+                    document.getElementById("taskDescription").addEventListener("input", function () {
+                        var username = this.value;
+                        if (!/^[A-Za-z0-9 ]+$/.test(username)) {
+                            this.setCustomValidity("Task Description must be alphanumeric");
+                        } else {
+                            this.setCustomValidity("");
+                        }
+                    });
+                </script>
+                <div class="mb-3">
+                    <label for="taskDate" class="form-label">Task Date</label>
+                    <input asp-for="TaskDate" class="form-control" type="date" id="taskDate" required />
+                    <span asp-validation-for="TaskDate" class="text-danger"></span>
+                </div>
+
+                <script>
+                    var taskDateInput = document.getElementById('taskDate');
+                    var currentDate = new Date();
+                    var minDate = currentDate.toISOString().split('T')[0];
+                    taskDateInput.min = minDate;
+                </script>
+
+                <div class="mb-3">
+                    <label for="statusId" class="form-label">Status</label>
+                    <select asp-for="StatusId" class="form-select" id="statusId">
+                        @{
+                            var statusid = await ForeignKeyHelper.GetByStatusId();
+                        }
+                        @foreach (SelectListItem item in statusid)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="StatusId" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="priorityId" class="form-label">Priority</label>
+                    <select asp-for="PriorityId" class="form-select" id="priorityId">
+                        @{
+                            var priorityid = await ForeignKeyHelper.GetByPriorityId();
+                        }
+                        @foreach (SelectListItem item in priorityid)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="PriorityId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+  
+
+    <div class="mt-3">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+
+
+

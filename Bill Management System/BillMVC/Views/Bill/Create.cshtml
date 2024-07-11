@@ -1,0 +1,112 @@
+﻿@model BillLibrary.Models.UserDetails
+
+@{
+    ViewData["Title"] = "Create User with Bills";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create User with Bills</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="UserName" class="control-label"></label>
+        <input asp-for="UserName" class="form-control" placeholder="Enter user name" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MobileNumber" class="control-label"></label>
+        <input asp-for="MobileNumber" class="form-control" placeholder="Enter mobile number" />
+        <span asp-validation-for="MobileNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control" placeholder="Enter address" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <h3>Bill Items</h3>
+    <table class="table table-bordered" id="billItemsTable">
+        <thead class="thead-dark">
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total Amount</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Bill items will be dynamically added here -->
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-success mb-3" onclick="addBillItem()">Add Bill Item</button>
+
+    <h4>Overall Total Amount: <span id="overallTotalAmount">0.00</span></h4>
+    <input type="hidden" asp-for="TotalAmount" id="overallTotalAmountInput" />
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function addBillItem() {
+            const tableBody = document.querySelector('#billItemsTable tbody');
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                        <td>
+                            <input type="text" name="BillItems[${tableBody.children.length}].ProductName" class="form-control" placeholder="Enter product name" />
+                        </td>
+                        <td>
+                            <input type="number" name="BillItems[${tableBody.children.length}].Quantity" class="form-control" placeholder="Enter quantity" min="0" oninput="updateRowTotal(this)" />
+                        </td>
+                        <td>
+                            <input type="number" name="BillItems[${tableBody.children.length}].Price" class="form-control" placeholder="Enter price" min="0" step="0.01" oninput="updateRowTotal(this)" />
+                        </td>
+                        <td>
+                            <span class="rowTotal">0.00</span>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="removeBillItem(this)" aria-label="Remove item">Remove</button>
+                        </td>
+                    `;
+
+            tableBody.appendChild(row);
+        }
+
+        function removeBillItem(button) {
+            const row = button.closest('tr');
+            row.remove();
+            updateOverallTotalAmount();
+        }
+
+        function updateRowTotal(input) {
+            const row = input.closest('tr');
+            const quantity = parseFloat(row.querySelector('input[name*="Quantity"]').value) || 0;
+            const price = parseFloat(row.querySelector('input[name*="Price"]').value) || 0;
+            const rowTotal = row.querySelector('.rowTotal');
+
+            const total = (quantity * price).toFixed(2);
+            rowTotal.innerText = total;
+
+            updateOverallTotalAmount();
+        }
+
+        function updateOverallTotalAmount() {
+            let overallTotalAmount = 0;
+            const tableBody = document.querySelector('#billItemsTable tbody');
+            const rows = tableBody.children;
+
+            for (let row of rows) {
+                const rowTotal = parseFloat(row.querySelector('.rowTotal').innerText) || 0;
+                overallTotalAmount += rowTotal;
+            }
+
+            document.getElementById('overallTotalAmount').innerText = overallTotalAmount.toFixed(2);
+            document.getElementById('overallTotalAmountInput').value = overallTotalAmount.toFixed(2);
+        }
+    </script>
+}

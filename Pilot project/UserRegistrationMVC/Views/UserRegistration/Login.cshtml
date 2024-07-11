@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title style="text-align:center; font-weight:bold" >Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      body{
+            background-image: url('../Images/bg4.jfif');
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            max-width: 150%;
+            text-align: center;           
+        }
+
+            .login-container h2 {
+                margin-bottom: 30px;
+                color: #333;
+                font-size: 24px;              
+            }
+
+            .login-container input[type="text"],
+            .login-container input[type="password"] {
+                width: calc(100% - 30px);
+                padding: 15px;
+                margin: 10px 0;
+                border: none;
+                border-radius: 5px;
+                box-sizing: border-box;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);              
+                transition: box-shadow 0.3s ease;               
+            }
+
+            .btn{
+                margin-left:350px;
+            margin-top: 80px;
+            }
+                .login-container input[type="text"]:focus,
+                .login-container input[type="password"]:focus {
+                    outline: none;
+                    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+                }
+
+            .login-container input[type="submit"] {
+                background-color: #007bff;
+                color: #fff;
+                padding: 15px;
+                margin: 10px 0;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                width: calc(100% - 30px);
+                transition: background-color 0.3s ease;
+            }
+
+                .login-container input[type="submit"]:hover {
+                    background-color: #0056b3;
+                }
+
+        .sign-up {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #666;
+        }
+
+            .sign-up a {
+                color: #007bff;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+                .sign-up a:hover {
+                    color: #0056b3;
+                }
+
+        .error-message {
+            color: #ff0000;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+    <div class="btn">
+        @{
+            var registerSuccess = TempData["RegisterSuccess"] as bool?;
+            var logoutSuccess = TempData["LogoutSuccess"] as bool?;
+        }
+
+        @if (registerSuccess.HasValue && registerSuccess.Value)
+        {
+            <div id="SuccessMessage" class="alert alert-success" role="alert">
+                Registration Successful Please Login!
+            </div>
+        }
+        else if (logoutSuccess.HasValue && logoutSuccess.Value)
+        {
+            <div id="SuccessMessage" class="alert alert-success" role="alert">
+                Logout Successful!
+            </div>
+        }
+        <script>
+            setTimeout(function () {
+                var SuccessMessage = document.getElementById('SuccessMessage');
+                if (SuccessMessage) {
+                    SuccessMessage.style.display = 'none';
+                }
+            }, 3000); 
+        </script>
+
+       <div class="login-container"">
+        <h2>Login</h2>
+        @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
+        {
+            <p class="error-message">@ViewData["ErrorMessage"]</p>
+        }  
+
+
+        <form action="Verify" method="post">
+            <input type="text" name="UserName" placeholder="Username" required>
+            <input type="password" name="Password" placeholder="Password" required>
+            <input type="submit" value="Login">
+        </form>
+
+        <div class="sign-up">
+            Don't have an account? <a href="Register">Sign Up</a> 
+        </div>
+    </div>
+    </div>
+
+</html>

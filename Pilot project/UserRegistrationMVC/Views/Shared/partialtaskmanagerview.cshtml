@@ -1,0 +1,76 @@
+﻿@model IEnumerable<TaskLibrary.Models.TaskList>
+
+<!--Partial view for task manager-->
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="bg-primary text-white">
+            <tr style="text-align:center">
+                <th>Task Name</th>
+                <th>Task Description</th>
+                <th>Task Date</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="text-align:center">@Html.DisplayFor(modelItem => item.TaskName)</td>
+                    <td style="text-align:center">@Html.DisplayFor(modelItem => item.TaskDescription)</td>
+                    <td style="text-align:center">@item.TaskDate.ToString("dd-MM-yyyy")</td>
+                    <td style="text-align:center">
+                        @if (item.StatusLookUp.StatusType == "To Do")
+                        {
+                            <span class="badge bg-warning">@Html.DisplayFor(modelItem => item.StatusLookUp.StatusType)</span>
+                        }
+                        else if (item.StatusLookUp.StatusType == "Open")
+                        {
+                            <span class="badge bg-warning">@Html.DisplayFor(modelItem => item.StatusLookUp.StatusType)</span>
+                        }
+                        else if (item.StatusLookUp.StatusType == "In Progress")
+                        {
+                            <span class="badge bg-info">@Html.DisplayFor(modelItem => item.StatusLookUp.StatusType)</span>
+                        }
+                        else if (item.StatusLookUp.StatusType == "Completed")
+                        {
+                            <span class="badge bg-success">@Html.DisplayFor(modelItem => item.StatusLookUp.StatusType)</span>
+                        }
+                        else if (item.StatusLookUp.StatusType == "Deleted")
+                        {
+                            <span class="badge bg-danger">@Html.DisplayFor(modelItem => item.StatusLookUp.StatusType)</span>
+                        }
+
+                    </td>
+                    <td style="text-align:center">
+                        @if (item.PriorityLookUp.PriorityType == "High")
+                        {
+                            <span class="badge bg-danger text-dark">@Html.DisplayFor(modelItem => item.PriorityLookUp.PriorityType)</span>
+                        }
+                        else if (item.PriorityLookUp.PriorityType == "Medium")
+                        {
+                            <span class="badge bg-warning text-dark">@Html.DisplayFor(modelItem => item.PriorityLookUp.PriorityType)</span>
+                        }
+                        else if (item.PriorityLookUp.PriorityType == "Low")
+                        {
+                            <span class="badge bg-info text-dark">@Html.DisplayFor(modelItem => item.PriorityLookUp.PriorityType)</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { TaskId = item.TaskId })" class="btn btn-primary btn-sm me-2" title="Edit">
+                            <span class="rounded-circle d-inline-block px-1 py-0.5 bg-light">✏️</span>  
+                        </a>
+                        <a href="@Url.Action("Details", new { TaskId = item.TaskId })" class="btn btn-info btn-sm me-2" title="Details">
+                            <span class="rounded-circle d-inline-block px-2 py-0.5 bg-light">ℹ️ </span> 
+                        </a>
+                        <a href="@Url.Action("Delete", new { TaskId = item.TaskId })" class="btn btn-danger btn-sm" title="Delete">
+                            <span class="rounded-circle d-inline-block px-1 py-0.5 bg-light">🗑️</span>  
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

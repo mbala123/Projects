@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Index";
+
+}
+
+<h1 class="text-center mb-4" style="font-weight:bold">Menu</h1>
+
+@{
+    var loginSuccess = TempData["LoginSuccess"] as bool?;
+}
+
+@if (loginSuccess.HasValue && loginSuccess.Value)
+{
+    <div id="loginSuccessMessage" class="alert alert-success" role="alert">
+        Login Successful!
+    </div>
+}
+<script>
+    setTimeout(function () {
+        var loginSuccessMessage = document.getElementById('loginSuccessMessage');
+        if (loginSuccessMessage) {
+            loginSuccessMessage.style.display = 'none';
+        }
+    }, 3000); 
+</script>
+
+
+<div class="btn-container text-center mb-4">
+    <a href="@Url.Action("GetDetailsByTaskDate", "DailyTracker")" class="btn btn-primary btn-lg me-3" style="margin-right:20px">Daily Tracker</a> 
+    <a href="@Url.Action("Index", "TaskManager")" class="btn btn-secondary btn-lg me-3" style="margin-right:20px" >Task Manager</a> 
+    <a href="@Url.Action("Index", "History")" class="btn btn-secondary btn-lg me-3">History</a> 
+</div>

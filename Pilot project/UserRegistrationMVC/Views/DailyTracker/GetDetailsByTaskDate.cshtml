@@ -1,0 +1,83 @@
+﻿@model IEnumerable<TaskLibrary.Models.TaskList>
+
+@{
+    ViewData["Title"] = "GetDetailsByTaskDate";
+    var Employeename = ViewBag.displayname;
+    var userid = ViewBag.userid;
+}
+
+<h1 class="display mb-4 text-center " style="font-weight:bold">Daily Tracker</h1>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        No Tasks are available today.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else
+{
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>Task Name</th>
+                <th>Task Description</th>
+                <th>Task Date</th>
+                <th>Status</th>
+                <th>Priority</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.TaskName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TaskDescription)</td>
+                    <td>@item.TaskDate.ToString("dd-MM-yyyy")</td>
+                    <td>
+                         @if (item.StatusLookUp.StatusType == "To Do")
+                         {
+                             <span class="badge bg-warning">@Html.DisplayFor(modelItem => item.StatusLookUp.StatusType)</span>
+                         }
+                         else if (item.StatusLookUp.StatusType == "In Progress")
+                         {
+                             <span class="badge bg-info">@Html.DisplayFor(modelItem => item.StatusLookUp.StatusType)</span>
+                         }
+                         else if (item.StatusLookUp.StatusType == "Completed")
+                         {
+                              <span class="badge bg-success">@Html.DisplayFor(modelItem => item.StatusLookUp.StatusType)</span>
+                         }
+                         else if (item.StatusLookUp.StatusType == "Deleted")
+                         {
+                              <span class="badge bg-danger">@Html.DisplayFor(modelItem => item.StatusLookUp.StatusType)</span>
+                         }
+
+                    </td>
+                    <td>
+                          @if(item.PriorityLookUp.PriorityType=="High")
+                          { 
+                              <span class="badge bg-danger text-dark">@Html.DisplayFor(modelItem => item.PriorityLookUp.PriorityType)</span>
+                          }
+                          else if (item.PriorityLookUp.PriorityType == "Medium")
+                          {
+                              <span class="badge bg-warning text-dark">@Html.DisplayFor(modelItem => item.PriorityLookUp.PriorityType)</span>
+                          }
+                          else if (item.PriorityLookUp.PriorityType == "Low")
+                          {
+                              <span class="badge bg-info text-dark">@Html.DisplayFor(modelItem => item.PriorityLookUp.PriorityType)</span>
+                          }                           
+                    </td>                   
+                </tr>
+            }
+        </tbody>
+
+    </table>
+ 
+   
+</div>
+}
+
+<a href="@Url.Action("Index", "Index")" class="btn btn-success btn-lg">Back to Home</a> <!-- Updated button style to Bootstrap's success color -->
+<a href="@Url.Action("Index", "TaskManager")" class="btn btn-success btn-lg">Go to Task Manager</a> <!-- Updated button style to Bootstrap's success color -->

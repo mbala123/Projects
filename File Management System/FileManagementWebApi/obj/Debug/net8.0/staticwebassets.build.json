@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "W8ERgPdeUsBVX3y/ZO5cysI+9RfDUQFdA4S/2qz7Wj0=",
+  "Source": "FileManagementWebApi",
+  "BasePath": "_content/FileManagementWebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

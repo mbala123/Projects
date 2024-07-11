@@ -1,0 +1,28 @@
+﻿@model TaskLibrary.Models.TaskList
+
+@{
+    ViewData["Title"] = "GetByTaskDateIndex";
+}
+
+
+<div class="container">
+    <h1 class="display-4 text-center" style="font-weight:bold">Get By Task Date Index</h1>
+    <div class="card mt-4">
+        <div class="card-body">
+            <form method="get" action="@Url.Action("GetByTaskDate", "TaskManager")">
+                <div class="mb-3">
+                    <label for="taskdate" class="form-label">Select Task Date:</label>
+                    <div class="input-group">
+                        <input type="date" id="taskdate" name="taskdate" class="form-control" />
+                        <button type="button" class="btn btn-outline-secondary">
+                            <i class="bi bi-calendar"></i>
+                        </button>
+                    </div>
+                    <span asp-validation-for="TaskDate" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <a asp-action="Index" class="btn btn-primary mt-3">Back to List</a>
+</div>
